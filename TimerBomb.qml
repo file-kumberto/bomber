@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Dialogs 1.2
+import "dynamicTimer.js" as MyScript
 
 Rectangle {
     width: 130
@@ -9,8 +10,8 @@ Rectangle {
     x: 315
     y: 182
     Text{
+        id: time
         color: "#ea0b0b"
-        text: timer.time
         font.family: "Arial Black"
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
@@ -25,6 +26,13 @@ Rectangle {
             }
         }
     }
+    Timer{
+        interval: MyScript.interval
+        running: true
+        repeat: true
+        onTriggered: time.text = MyScript.func()
+    }
+
     MessageDialog{
         id: endMessage
         function show(caption) {

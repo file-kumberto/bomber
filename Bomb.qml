@@ -5,9 +5,9 @@ FocusScope {
     width: 640
     height: 480
     visible: true
-    property alias button1: blackWire
-    property alias button2: redWire
-    property alias button3: blueWire
+//    property alias button1: blackWire
+//    property alias button2: redWire
+//    property alias button3: blueWire
 
     Image {
         id: bomb
@@ -25,43 +25,24 @@ FocusScope {
         y: 40
         width: 199
         height: 97
-        Image{
+        RedWire{
 
-            width: 170
+            width: 180
             height: 97
             x: 3
-            source: "file:///d:/Cplus/Qt/sapper/black-wire.png"
-
-            MouseArea{
-                id: blackWire
-                anchors.fill: parent
-                cursorShape: Qt.OpenHandCursor
-            }
         }
-        Image{
+        GreyWire{
 
-            width: 150
+            width: 148
             height: 77
             anchors.bottom: parent.bottom
-            x: 13
-            source: "file:///d:/Cplus/Qt/sapper/red-wire.png"
-            MouseArea{
-                id: redWire
-                anchors.fill: parent
-                cursorShape: Qt.OpenHandCursor
-            }
+            x: 18
         }
-        Image{
-            width: 110
-            height: 47
+        BlueWire{
+            width: 100
+            height: 62
             anchors.bottom: parent.bottom
-            x: 32
-            source: "file:///d:/Cplus/Qt/sapper/blue-wire.png"
-            MouseArea{
-                id: blueWire
-                anchors.fill: parent
-                cursorShape: Qt.OpenHandCursor
-            }
+            x: 42
         }
     }
 }

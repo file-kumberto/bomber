@@ -3,5 +3,9 @@
         <file>main.qml</file>
         <file>Bomb.qml</file>
         <file>TimerBomb.qml</file>
+        <file>dynamicTimer.js</file>
+        <file>BlueWire.qml</file>
+        <file>RedWire.qml</file>
+        <file>GreyWire.qml</file>
     </qresource>
 </RCC>
