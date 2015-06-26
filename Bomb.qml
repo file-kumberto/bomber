@@ -5,11 +5,8 @@ FocusScope {
     width: 640
     height: 480
     visible: true
-    property alias interval: rectTimer.intervalTimer
-    property alias timer: rectTimer.timer
-    property alias counter: rectTimer.counter
 //    property alias button1: blackWire
-    property alias button2: redWire
+//    property alias button2: redWire
 //    property alias button3: blueWire
 
     Image {
@@ -29,20 +26,19 @@ FocusScope {
         width: 199
         height: 97
         RedWire{
-            id: redWire
+
             width: 180
             height: 97
             x: 3
         }
         GreyWire{
-            id: greyWire
+
             width: 148
             height: 77
             anchors.bottom: parent.bottom
             x: 18
         }
         BlueWire{
-            id: blueWire
             width: 100
             height: 62
             anchors.bottom: parent.bottom

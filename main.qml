@@ -15,10 +15,7 @@ ApplicationWindow {
             title: qsTr("&File")
             MenuItem {
                 text: qsTr("&New")
-                onTriggered: {
-                    bomb.interval = 1000;
-                    bomb.counter = 60;
-                }
+                onTriggered: MyScript.resetTimer();
             }
             MenuItem {
                 text: qsTr("E&xit")
@@ -28,16 +25,15 @@ ApplicationWindow {
     }
 
     Bomb {
-        id: bomb
         anchors.fill: parent
 //        button1.onClicked: {
 //            messageDialog.show(qsTr("Defused"))
 //            timer.stopTimer()
 //        }
-        button2.leftMouse.onClicked:  {
-            messageDialog.show(qsTr("Detonation!!"))
-            bomb.timer.stop()
-        }
+//        button2.onClicked: {
+//            messageDialog.show(qsTr("Detonation!!"))
+//            timer.stopTimer()
+//        }
 //        button3.onClicked: {
 //            messageDialog.show(qsTr("accelerated time 2 times"))
 //            timer.doubleSpeed()
