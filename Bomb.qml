@@ -16,7 +16,7 @@ FocusScope {
         id: bombImage
         width: wrapperWidth
         height: wrapperHeight
-        source: "bomb2.jpg"
+        source: "/bomb2.jpg"
     }
     TimerBomb{
         id: timer
