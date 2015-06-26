@@ -3,6 +3,9 @@ import QtQuick.Dialogs 1.2
 import "dynamicTimer.js" as MyScript
 
 Rectangle {
+    property int intervalTimer: 1000
+    property int counter: 60
+    property alias timer: timer
     width: 130
     height: 50
     color: "black"
@@ -22,15 +25,22 @@ Rectangle {
         onTextChanged: {
             if(text == '0') {
                 endMessage.show("BANG!!!!!!!!")
-                timer.stopTimer()
+                timer.stop()
             }
         }
     }
     Timer{
-        interval: MyScript.interval
+        id: timer
+        interval: intervalTimer
         running: true
         repeat: true
-        onTriggered: time.text = MyScript.func()
+        onTriggered:{
+            time.text = func();
+            function func(){
+                counter -= 1;
+                return counter;
+            }
+        }
     }
 
     MessageDialog{
