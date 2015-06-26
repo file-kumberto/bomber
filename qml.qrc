@@ -6,5 +6,7 @@
         <file>BlueWire.qml</file>
         <file>RedWire.qml</file>
         <file>GreyWire.qml</file>
+        <file>generatorMessage.js</file>
+        <file>bomb2.jpg</file>
     </qresource>
 </RCC>

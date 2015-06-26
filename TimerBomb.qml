@@ -5,12 +5,15 @@ Rectangle {
     property int intervalTimer: 1000
     property int counter: 60
     property alias timer: timer
-    width: 130
-    height: 50
+    property int wrapperWidth: 0
+    property int wrapperHeight: 0
+
+    width: {wrapperWidth*0.203125}
+    height: {wrapperHeight * 0.10833333333333}
     color: "black"
     border.width: 0
-    x: 315
-    y: 182
+    x: {wrapperWidth*0.4921875}
+    y: {wrapperHeight * 0.43}
     Text{
         id: time
         color: "#ea0b0b"
@@ -24,7 +27,8 @@ Rectangle {
         onTextChanged: {
             if(text == '0') {
                 endMessage.show("BANG!!!!!!!!")
-                timer.stop()
+                intervalTimer = 1000
+                counter = 60
             }
         }
     }
