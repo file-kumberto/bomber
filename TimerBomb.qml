@@ -24,13 +24,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         anchors.verticalCenter: parent.verticalCenter
-        onTextChanged: {
-            if(text == '0') {
-                endMessage.show("BANG!!!!!!!!")
-                intervalTimer = 1000
-                counter = 60
-            }
-        }
+        text: counter
     }
     Timer{
         id: timer
@@ -38,20 +32,17 @@ Rectangle {
         running: true
         repeat: true
         onTriggered:{
-            time.text = func();
-            function func(){
-                counter -= 1;
-                return counter;
+            --counter;
+            if(counter === 0) {
+                endMessage.open()
+                stop();
             }
         }
     }
 
     MessageDialog{
         id: endMessage
-        function show(caption) {
-            messageDialog.text = caption;
-            messageDialog.open();
-        }
+        text: "BANG!!!!!!!!"
     }
 }
 

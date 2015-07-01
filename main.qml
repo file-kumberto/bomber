@@ -2,19 +2,46 @@ import QtQuick 2.4
 import QtQuick.Controls 1.3
 import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
-import "generatorMessage.js" as Generator
 
 ApplicationWindow {
-    id: wrapper
+    id: window
+    property string message1: ""
+    property string message2: ""
+    property string message3: ""
+
     title: qsTr("Hello World")
     width: Screen.desktopAvailableWidth
     height: Screen.desktopAvailableHeight
     minimumWidth: 640
     minimumHeight: 480
     visible: true
-    property int message1: 0
-    property int message2: 0
-    property int message3: 0
+    function messageValue() {
+        var array =[0,0,0,];
+        var str = ["Detonation!","Defused!","accelerated time 2 times"];
+        for( var i = 0; i < 3; ) {
+           var numberMessage = Math. round(Math.random()*2 + 1);
+
+            if( array[0] === 0 ) {
+                array[0] = numberMessage;
+                console.debug("array[0] " + array[0]);
+                i += 1;
+            } else if( array[0] !== numberMessage && array[1] === 0) {
+                array[1] = numberMessage;
+                console.debug("array[1] " + array[1]);
+                i += 1;
+            } else if (array[0] !== numberMessage && array[1] !== numberMessage) {
+                array[2] = numberMessage;
+                console.debug("array[2] " + array[2]);
+                i += 1;
+            }
+        }
+        message1 = str[array[0] - 1];
+        message2 = str[array[1] - 1];
+        message3 = str[array[2] - 1];
+    }
+    Component.onCompleted: {
+        messageValue();
+    }
 
     menuBar: MenuBar {
         Menu {
@@ -24,7 +51,7 @@ ApplicationWindow {
                 onTriggered: {
                     bomb.interval = 1000;
                     bomb.counter = 60;
-                    Generator.messageValue();
+                    messageValue();
                     bomb.timer.start();
                 }
             }
@@ -34,60 +61,11 @@ ApplicationWindow {
             }
         }
     }
-    Component.onCompleted: {
-        Generator.messageValue();
-    }
 
     Bomb {
         id: bomb
         anchors.fill: parent
-        wrapperWidth: wrapper.width
-        wrapperHeight: wrapper.height
-        button1.leftMouse.onClicked:  {
-            messageDialog.show(message1)
-        }
-        button1.topMouse.onClicked:  {
-            messageDialog.show(message1)
-        }
-        button1.rightMouse.onClicked:  {
-            messageDialog.show(message1)
-        }
-        button2.leftMouse.onClicked:  {
-            messageDialog.show(message2)
-        }
-        button2.topMouse.onClicked:  {
-            messageDialog.show(message2)
-        }
-        button2.rightMouse.onClicked:  {
-            messageDialog.show(message2)
-        }
-        button3.leftMouse.onClicked:  {
-            messageDialog.show(message3)
-        }
-        button3.topMouse.onClicked:  {
-            messageDialog.show(message3)
-        }
-        button3.rightMouse.onClicked:  {
-            messageDialog.show(message3)
-        }
-    }
-
-    MessageDialog {
-        id: messageDialog
-        title: qsTr("May I have your attention, please?")
-
-        function show(caption) {
-            if( caption === 1 ) {
-                messageDialog.text = "Detonation!";
-                bomb.timer.stop();
-            } else if( caption === 2 ) {
-                messageDialog.text = "Defused!";
-                bomb.timer.stop();
-            } else if( caption === 3 ) {
-                messageDialog.text = "accelerated time 2 times";
-                bomb.interval = 500;
-            }
-            messageDialog.open();
-        }
+        windowWidth: window.width
+        windowHeight: window.height
     }
 }
