@@ -8,13 +8,14 @@ Rectangle {
     property int wrapperWidth: 0
     property int wrapperHeight: 0
 
-    width: {wrapperWidth*0.203125}
-    height: {wrapperHeight * 0.10833333333333}
+    x: (wrapperWidth*0.4921875)
+    y: (wrapperHeight * 0.43)
+    width: (wrapperWidth*0.203125)
+    height: (wrapperHeight * 0.10833333333333)
     color: "black"
     border.width: 0
-    x: {wrapperWidth*0.4921875}
-    y: {wrapperHeight * 0.43}
-    Text{
+
+    Text {
         id: time
         color: "#ea0b0b"
         font.family: "Arial Black"
@@ -26,14 +27,14 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         text: counter
     }
-    Timer{
+    Timer {
         id: timer
         interval: intervalTimer
         running: true
         repeat: true
-        onTriggered:{
+        onTriggered: {
             --counter;
-            if(counter === 0) {
+            if ( counter === 0 ) {
                 endMessage.open()
                 stop();
             }
